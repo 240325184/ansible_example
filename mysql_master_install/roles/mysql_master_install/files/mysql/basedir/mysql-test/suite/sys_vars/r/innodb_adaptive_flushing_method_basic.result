@@ -1,3 +1,0 @@
-SELECT @@global.innodb_adaptive_flushing_method;
-@@global.innodb_adaptive_flushing_method
-estimate

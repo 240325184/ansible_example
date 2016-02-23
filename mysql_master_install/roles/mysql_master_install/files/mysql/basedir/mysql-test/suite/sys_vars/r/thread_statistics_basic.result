@@ -1,3 +1,0 @@
-SELECT @@global.thread_statistics;
-@@global.thread_statistics
-0

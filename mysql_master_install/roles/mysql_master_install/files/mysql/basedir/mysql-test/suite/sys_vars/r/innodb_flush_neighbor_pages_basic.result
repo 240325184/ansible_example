@@ -1,3 +1,0 @@
-SELECT @@global.innodb_flush_neighbor_pages;
-@@global.innodb_flush_neighbor_pages
-area
