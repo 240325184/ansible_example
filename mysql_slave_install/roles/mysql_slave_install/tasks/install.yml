@@ -17,7 +17,7 @@
     shell: "{{ mysql_basedir }}/bin/mysql -h localhost -u {{ mysql_database_user }} -P {{ mysql_port }} -S {{ mysql_sock }} -e 'show databases;' && echo 'ok' || echo 'work'"
     register: result
     until: result.stdout.find("ok") != -1
-    retries: 20
+    retries: 30
     delay: 5
     when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=6 
   - name: Start Myql Security Script In Redhat Client

@@ -11,13 +11,13 @@
       - "{{ mysql_basedir }}"
     when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=6
   - name: Install Mysql Script In Redhat Client
-    shell: /bin/bash /tmp/install_mysql.sh
+    shell: /bin/bash /tmp/install_mysql.sh>/tmp/mysql_install.log
     when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=6
   - name: Wait Untils Mysql Service Avaiable In Redhat Client
-    shell: "{{ mysql_basedir }}/bin/mysql -h localhost -u {{ mysql_database_user }} -P {{ mysql_port }} -S {{ mysql_sock }} -e 'show databases;' && echo 'ok' || echo 'work'"
+    shell: "{{ mysql_basedir }}/bin/mysql -h localhost -u {{ mysql_database_user }} -P {{ mysql_port }} -S {{ mysql_sock }} -e 'show databases;' && echo 'ok' || echo 'work'>>/tmp/ok.log"
     register: result
     until: result.stdout.find("ok") != -1
-    retries: 20
+    retries: 30
     delay: 5
     when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=6 
   - name: Start Myql Security Script In Redhat Client
@@ -35,7 +35,4 @@
     when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=6
   - name: Create Mysql Master And Slave  In redhat Client
     shell: /bin/bash /tmp/create_master_slave.sh
-    when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=6
-  - name: Delete Create Mysql Master And Slave Script  In redhat Client
-    shell: rm -rf  /tmp/create_master_slave.sh
     when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=6

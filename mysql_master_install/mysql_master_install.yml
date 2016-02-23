@@ -1,6 +1,6 @@
 ---
-- hosts: "{{host}}"
-  remote_user: "{{user}}"
+- hosts: mysql_master
+  remote_user: root
   gather_facts: True
   roles:
     - common

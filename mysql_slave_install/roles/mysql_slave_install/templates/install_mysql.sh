@@ -1,5 +1,5 @@
 #!/bin/bash
-mv /tmp/my.cnf {{ mysql_datadir }}/my.cnf
+\cp /tmp/my.cnf {{ mysql_datadir }}/my.cnf
 chown -R {{ mysql_user }}:{{ mysql_user }} {{ mysql_datadir }} {{ mysql_basedir }}
 ###init mysql db###"
 {{ mysql_basedir }}/scripts/mysql_install_db --defaults-file={{ mysql_datadir }}/my.cnf --basedir={{ mysql_basedir }} --datadir={{ mysql_datadir }} --user={{ mysql_user }} >> /dev/null 2>&1 &
